@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!----------------------------------------StyleSheet------------------------------------>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/verify-email.css') }}?{{ cache_id }}" />
+	<!----------------------------------------Script------------------------------------>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="module" src="{{ url_for('static', filename='scripts/veriy-email.js') }}?{{ data['cache_id'] }}"></script>
+	<title>Verify Email</title>
+    </head>
+
+    <body>
+	<div class="container">
+	    <div class="top">
+		<img src="{{ url_for('static', filename='images/email_icon.jpeg') }}" \>
+		<strong>Enter Confirmation Code</strong>
+		<p>Enter the confirmation code we sent to <br />{{ data["email"] }}. <a href="#"><strong>Resend Code</strong></a></p>
+		<form id="form">
+		    <div id="form-sect">
+			<input id="token" placeholder="Confirmation Code" \><br \>
+			<button type="submit">Next</button><br />
+                        <a href="{{ url_for('register') }}"><strong>Go Back</strong></a>
+		    </div>
+		</form>
+	    </div>
+	    <div class="buttom">
+                <p>Have an account? <a href="{{ url_for('login') }}"><strong>Login</strong></a>
+	    </div>
+	</div>
+    </body>
+</html>

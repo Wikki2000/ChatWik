@@ -1,0 +1,87 @@
+Register a new user
+---
+tags:
+  - Authentication
+description: This endpoint allows new users to create an account by providing their details.
+parameters:
+  - in: body
+    name: body
+    description: The user's registration information
+    required: true
+    schema:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: The user's Full Name
+          example: John Doe
+        username:
+          type: string
+          description: The user's username
+          example: johndoe
+        email:
+          type: string
+          description: The user's email address
+          example: johndoe@example.com
+        password:
+          type: string
+          description: The user's password
+          example: securepassword123
+responses:
+  201:
+    description: User registered successfully
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Registration successfully
+        data:
+          type: object
+          properties:
+            username:
+              type: string
+              example: johndoe
+            email:
+              type: string
+              example: johndoe@example.com
+  400:
+    description: Invalid input data
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: "Invalid input data"
+  409:
+    description: User already exists
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "User already exists"
+        status:
+          type: string
+          example: Registration Failed
+  422:
+    description: Validation Error
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Validation Error 
+        message:
+          type: string
+          example: Invalid or expired token

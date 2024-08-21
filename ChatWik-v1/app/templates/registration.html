@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!----------------------------------------StyleSheet------------------------------------>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/registration.css') }}?{{ cache_id }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<!----------------------------------------JavaScript------------------------------------>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script type="module" src="{{ url_for('static', filename='scripts/register.js') }}?{{ cache_id }}"></script>
+        <title>Registration</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="head">
+                <h2>
+                    <strong>Sign up</strong>
+                </h2>
+                <p>fill in this form to create an account.</p>
+		<div id="errorDiv" class="alert alert-danger fade-in">
+                  <div id="errorMsg"></div>
+                </div>
+
+            </div>
+
+	    <form id="form" method="POST" action="{{ url_for('register') }}">
+                <div class="form-group">
+                    <label>Name <span>*</span></label>
+                    <input class="form-control" id="name" name="name" placeholder="Enter first and last name" required>
+                </div>
+
+		<div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" id="username" name="username" placeholder="Optional: Enter user name" required>
+
+                <div class="form-group">
+                    <label for="email">Email <span>*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder=" Enter email" required>
+                </div>
+
+
+                <div class="form-group" id="psw1">
+                    <label for="pwd1">Password <span>*</span></label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                    <span class="pwd-icon">
+                        <i class="fas fa-eye" id="pwd1Icon"></i>
+                    </span>
+                </div>
+
+                <div class="form-group" id="psw2">
+                    <label for="pwd2">Confirm Password <span>*</span></label>
+                    <input type="password" class="form-control" id="confirmPassword" name="pwd2" placeholder="Confirm Password" required>
+                    <div class="pwd-icon">
+                        <i class="fas fa-eye" id="pwd2Icon"></i>
+                    </div>
+                </div>
+
+                <div class="grp-btn">
+			<a href="{{ url_for('login') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" name="submit" class="btn btn-success">Sign Up</button>
+                </div>
+
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(245, 245, 240);
+}
+header #header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+header #header a{
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: hwb(0 0% 0%);
+    color: white;
+    margin-right: 20px;
+    transform: translateY(-200%);
+    padding: 10px;
+}
+
+#user-icon{
+    transform: translateY(50%);
+    color: grey;
+    margin-left: 20px;
+}
+.container .btn{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid lightblue;
+    margin: 10px;
+    padding: 50px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: ghostwhite;
+}
+.container .welcome{
+    border: 2px solid lightblue;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    background-color: ghostwhite;
+}
+.container .welcome h4{
+    margin: 10px;
+    padding: 10px;
+}
+.container .btn a{
+    border: 3px solid lightblue;
+    background-color: rgb(248, 250, 251);
+    width: 25%;
+    margin: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    text-decoration-line: none;
+}
+.container a:hover{
+    opacity: 0.7;
+}
+.container a:active{
+    color: blue;
+    background-color: lightblue;
+}
+#welcome{
+    position: relative;
+    white-space: nowrap;
+    font: 30px;
+}
+#r-icon, #l-icon{
+    transform: translateY(20%);
+    margin-right: 2px;
+}
+header p{
+    color: rgba(12, 12, 130, 0.668);
+    transform: translateY(50%);
+    margin-left: 10px;
+}
+#profile{
+    text-decoration: none;
+}
