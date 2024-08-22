@@ -1,0 +1,52 @@
+Create Message
+---
+tags:
+  - Messages
+
+description: |
+  This endpoints allows user to create chat
+
+parameters:
+  - in: body
+    name: body
+    required: True
+    schema:
+      type: object
+      properties:
+        content:
+          type: string
+          example: "how are you"
+
+responses:
+  201:
+    description: Succesfully Update User Message
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "0b9f9e5d-f97c-4ac5-963e-9a7cfc35e945"
+        content:
+          type: string
+          example: "How are you"
+        username:
+          type: string
+          example: John Doe
+        user_id:
+          type: string
+          example: "ddcb006d-1776-4c17-b530-8250468fa482"
+        timestamp:
+          type: string
+          example: "2024-08-21T20:15:26"
+
+  400:
+    description: Invalid or empty request body
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "Bad Request"
+        message:
+          type: string
+          example: "Empty Request Body"

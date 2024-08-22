@@ -1,0 +1,28 @@
+Retrieve all message.
+---
+tags:
+  - Messages
+
+description: |
+  Retrieve user message and sort them according timestamp
+
+responses:
+  200:
+    description: Message Successfully Retrieved
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "0b9f9e5d-f97c-4ac5-963e-9a7cfc35e945"
+          created_by:
+            type: string
+            example: "John Bush"
+          created_at:
+            type: date-time
+            example: "2024-08-21T20:15:26"
+          content:
+            type: string
+            example: "Hi guys"

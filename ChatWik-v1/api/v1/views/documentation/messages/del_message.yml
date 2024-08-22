@@ -1,0 +1,29 @@
+Delete a message using it ID
+---
+tags:
+  - Messages
+
+description: |
+  This endpoints handles deleteion of message by user
+
+responses:
+  200:
+    description: Message Successfully Retrieved
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "Success"
+        message:
+          type: string
+          example: "Message Deleted Successfully"
+
+  404:
+    description: Raise a 404 error, if ID does not correspond to any message obj.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Not Found"

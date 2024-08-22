@@ -3,11 +3,13 @@
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flasgger.utils import swag_from
 from models import storage
 from models.message import Message
 
 
 @app_views.route("/messages", strict_slashes=False)
+@swag_from("documentation/messages/get_message.yml")
 #@jwt_required()
 def get_messages():
     """
@@ -22,10 +24,11 @@ def get_messages():
                 "created_at": message.timestamp, "content": message.content
             } for message in sort_messages
     ]
-    return jsonify(msg_list)
+    return jsonify(msg_list), 200
 
 
 @app_views.route("/messages/<mesg_id>", methods=["DELETE"], strict_slashes=False)
+@swag_from("documentation/messages/del_message.yml")
 def del_messages(mesg_id):
     """Handle view for message deletion."""
     messages = storage.all(Message)
@@ -42,6 +45,7 @@ def del_messages(mesg_id):
 
 
 @app_views.route("/messages/<mesg_id>", methods=["PUT"], strict_slashes=False)
+@swag_from("documentation/messages/put_message.yml")
 def put_messages(mesg_id):
     """Handle view for updating message."""
     data = request.get_json()
@@ -69,6 +73,7 @@ def put_messages(mesg_id):
 
 
 @app_views.route("/messages", methods=["POST"])
+@swag_from("documentation/messages/post_message.yml")
 #@jwt_required()
 def post_message():
     """This endpoint handle view for creation of message."""

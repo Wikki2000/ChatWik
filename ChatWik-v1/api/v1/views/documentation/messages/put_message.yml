@@ -1,0 +1,49 @@
+Update a message using it ID
+---
+tags:
+  - Messages
+
+description: |
+  This endpoints allows user to update his/her message
+
+parameters:
+  - in: body
+    name: body
+    required: True
+    schema:
+      type: object
+      properties:
+        content:
+          type: string
+          example: "how are you"
+
+responses:
+  200:
+    description: Succesfully Update User Message
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "Success"
+        message:
+          type: string
+          example: "Message Updated Successfully"
+
+  400:
+    description: Invalid or empty request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Not a valid JSON"
+
+  404:
+    description: Not found error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Not Found"
