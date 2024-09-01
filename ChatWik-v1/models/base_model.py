@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module models the storage of user details."""
 from datetime import datetime
-from models.storage import Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import declarative_base
 from uuid import uuid4

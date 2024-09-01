@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """This module models the storage of the authentication API"""
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker
+from models.base_model import Base
+from dotenv import load_dotenv
 from os import getenv
 
-Base = declarative_base()
+load_dotenv()
 
 class Storage:
     """ Defines storage model using SQLAlchemy. """
@@ -13,9 +15,9 @@ class Storage:
 
     def __init__(self):
         """ Create session engine to interact with database. """
-        username = getenv('USER_NAME')
-        password = getenv('PASSWORD')
-        database = getenv('DATABASE')
+        username = getenv('CHATWIK_USER_NAME')
+        password = getenv('CHATWIK_PASSWORD')
+        database = getenv('CHATWIK_DATABASE')
 
         if not username or not password:
             error = "Environment variables must be set for database URL"
@@ -48,6 +50,15 @@ class Storage:
     def new(self, obj):
         """ Add user object to session.new """
         self.__session.add(obj)
+
+    def rollback(self):
+        """ Rollback a session on error. """
+        self.__session.rollback()
+
+    def get_by_id(self, cls, obj_id):
+        """Retrieve an instance with it's ID."""
+        obj = self.__session.query(cls).filter_by(id=obj_id).first()
+        return obj
 
     def save(self):
         """ Commit change to database """

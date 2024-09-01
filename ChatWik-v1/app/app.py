@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, url_for, session, request, j
 from flask_jwt_extended import jwt_required, JWTManager
 from uuid import uuid4
 import requests
+from requests.exceptions import ConnectionError, Timeout
 from redis import Redis
 from datetime import timedelta
 from os import getenv
@@ -11,6 +12,7 @@ from os import getenv
 app = Flask(__name__)
 app.config["SECRET_KEY"] = getenv("FLASK_SECRET_KEY")
 jwt = JWTManager(app)
+
 
 URL_PREFIX = "/ChatWik/v1"
 @app.route(f"{URL_PREFIX}", strict_slashes=False)
@@ -141,5 +143,45 @@ def register():
     return redirect(url_for('verify_email', email=email))
 
 
+@app.route(f"{URL_PREFIX}/all-users", strict_slashes=False)
+#@jwt_required(locations=['cookies'])
+def all_users():
+    """Handle view to retrieved all users."""
+
+    # Send request to API to get all users.
+    url = "http://127.0.0.1:5001/api/v1/all-users"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        abort(500, "Failed Connection to API")
+    #return render_template("all-users.html", cache_id=uuid4())
+
+
+@app.route(f"{URL_PREFIX}/active-users", strict_slashes=False)
+@jwt_required(locations=['cookies'])
+def active_users():
+    """Handle view to retrieved all users."""
+    return render_template("active-users.html", cache_id=uuid4())
+
+
+#------------------------------FunctionsDefinition--------------------------#
+
+def get_request(url):
+    """
+    Handle get request of given url.
+    Return (JSON): The JSON data from request.
+    """
+    try:
+        response = requests.get(url, timeout=15) # Set timeout to 15 secs
+        return response.json()
+    except ConnectionError:
+        return jsonify({"status": "Request Timeout",
+                        "message": "API Connection Failed"})
+    except Timeout:
+        return jsonify({"status": "Request Timeout",
+                        "Request Timeout. Try Again Later"})
+
+        
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

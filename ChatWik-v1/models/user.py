@@ -2,7 +2,7 @@
 """This module models the storage of user details."""
 from datetime import datetime
 from models.base_model import Base, BaseModel
-from sqlalchemy import Column, String, Boolean
+from sqlalchemy import Column, String, Boolean, LargeBinary
 from uuid import uuid4
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -10,8 +10,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(BaseModel, Base):
     """Define the class models for user."""
     __tablename__ = "users"
-    name = Column(String(20), nullable=False)
+    first_name = Column(String(20), nullable=False)
+    last_name =  Column(String(20), nullable=False)
     username = Column(String(20))
+    image = Column(LargeBinary)
     email = Column(String(30), nullable=False, unique=True)
     password = Column(String(1500), nullable=False)
     is_active = Column(Boolean, default=False)
