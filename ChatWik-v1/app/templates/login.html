@@ -5,45 +5,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!----------------------------------------StyleSheet------------------------------------>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="../static/styles/login.css">
 	<!-------------------------------------JavaScript------------------------------------>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 	<script type="module" src="../static/scripts/login.js"></script>
         <title>Login</title>
     </head>
     <body>
-        <div class="container">
-	    <form action="{{ url_for('login') }}" method="POST">
-                <div class="common" id="header">
-                    <h1>LOGIN</h1>
-                    <div id="api-status"></div>
+        <div class="entire-box flex">
+            <div class="cw-description">
+                <div class="description-content">
+                    <p>ChatWik</p>
+                    <p>Chat Seamlessly With Friends and Family</p>
                 </div>
-                <div class="form-group common">
-                    <strong>Email <span>*</span></strong>
-                    <input class="form-control" placeholder="Enter email" type="email" id="email" name="email" required>
-                    <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="entire-login-box">
+                <div class="login-box">
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="common" id="header">
+                            <h1>Sign in</h1>
+                            <div id="api-status"></div>
+                        </div>
+                        <div class="form-group common">
+                            <input class="form-control" placeholder="Email" type="email" id="email" name="email" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="form-group common">
+                            <input class="form-control" placeholder="Password" type="password" id="password" name="password" required>
+                            <p class="fas fa-2 fa-eye" id="passwordIconId"></p>
+                        </div>
+
+                        <div class="common forget-pwd">
+                            <a href="forget_pwd.html">Forgot Password?</a>
+                        </div>
+                        <div class="common submit-button">
+                            <button type="submit" class="btn btn-success">Login</button>
+                            <br>
+                            <p>Don't have an account? <a href="registration.html">Register</a></p>
+                            <!-- {% with message = get_flashed_messages() %}
+                                {% if message %}
+                                    <div class="alert alert-danger fade-in alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Error!</strong> {{ message[0] }}
+                                    </div>
+                                {% endif %}
+                            {% endwith %} -->
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group common forget-pwd">
-                    <strong>Password <span>*</span></strong>
-                    <input class="form-control" placeholder="Enter password" type="password" id="password" name="password" required>
-                    <p class="fas fa-2 fa-eye" id="passwordIconId"></p>
-                    <a href="forget_pwd.html">Forgot Password?</a>
-                </div>
-                <div class="common">
-                    <button type="submit" class="btn btn-success">Login</button><br><br>
-                    <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
-                    {% with message = get_flashed_messages() %}
-                        {% if message %}
-                            <div class="alert alert-danger fade-in alert-dismissible">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Error!</strong> {{ message[0] }}
-                            </div>
-                        {% endif %}
-                    {% endwith %}
-                </div>
-            </form>
+                
+            </div>
         </div>
+
+
     </body>
 </html>

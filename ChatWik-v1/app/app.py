@@ -180,7 +180,7 @@ def get_request(url):
                         "message": "API Connection Failed"})
     except Timeout:
         return jsonify({"status": "Request Timeout",
-                        "Request Timeout. Try Again Later"})
+                        "msg": "Request Timeout. Try Again Later"})
 
         
 if __name__ == "__main__":
