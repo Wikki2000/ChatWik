@@ -4,13 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!----------------------------------------StyleSheet------------------------------------>
-        <link rel="stylesheet" href="../static/styles/registration.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/registration.css') }}?{{ cach_id }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/components.css') }}?{{ cache_id }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 	<!----------------------------------------JavaScript------------------------------------>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-        <script type="module" src="../static/scripts/register.js"></script>
+	<script type="module" src="{{ url_for('static', filename='scripts/register.js') }}"></script>
         <title>Registration</title>
     </head>
 
@@ -26,12 +25,9 @@
             <div class="entire-reg-box">
                 <div class="reg-box">
                     <h1>Create an account</h1>
-                    <p>Already have an account? <a href="login.html">Login</a></p>
-                    <!-- <div id="errorDiv" class="alert alert-danger fade-in">
-                    <div id="errorMsg"></div>
-                    </div> -->
-
-                    <form id="form" method="POST" action="{{ url_for('register') }}">
+		    <div class="auth__alert__msg"></div>
+		    <p>Already have an account? <a href="{{ url_for('app.login') }}">Login</a></p>
+                    <form id="reg-form">
                         <div class="name-group">
                             <input class="form-control" id="firstname" name="firstname" placeholder="First name" required>
                             <input class="form-control" id="lastname" name="lastname" placeholder="Last name" required>
@@ -56,7 +52,7 @@
                         <div class="form-group" id="pwd2">
                             <input type="password" class="form-control" id="confirmPassword" name="pwd2" placeholder="Confirm Password" required>
                             <span class="pwd-icon">
-                                <i class="fas fa-eye" id="pwd1Icon"></i>
+                                <i class="fas fa-eye" id="pwd2Icon"></i>
                             </span>
                         </div>
 
@@ -64,8 +60,9 @@
                             <input type="checkbox" name="agree-to-terms" id="agree-to-terms">
                             <label for="agree-to-terms">I agree to the <a href="#">Terms and Conditons</a></label>
                         </div>
+			<div class="loader"></div>
 
-                        <button type="submit" name="submit" class="btn btn-success">Create account</button>
+                        <button type="submit" name="submit" class="signup-btn">Create account</button>
 
                     </form>                    
                 </div>
@@ -75,10 +72,10 @@
 
         <div class="verification-modal">
             <div class="verification-modal-content">
-                <img src="../static/images/email_icon.jpeg" alt="email_icon">
+		    <img src="{{ url_for('static', filename='images/email_icon.jpeg') }}" alt="email_icon">
                 <p>Enter Confirmation Code</p>
                 <p>
-                    Enter the confirmation code we sent to email@email.com 
+	    	    Enter the confirmation code we sent to <span id="append-email">
                     <br>
                     <a href="#">
                         <strong>Resend Code</strong>
@@ -87,9 +84,9 @@
                 <form id="form">
                     <div id="form-sect">
                         <input id="token" placeholder="Confirmation Code">
-                        <button type="submit">Next</button>
+                        <button id="verify-btn" type="submit">Next</button>
                         <br />
-                        <a href="registration.html"><strong>Cancel</strong></a>
+			<a href="{{ url_for('app.register') }}"><strong>Cancel</strong></a>
                     </div>
                 </form>
             </div>

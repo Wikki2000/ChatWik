@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!----------------------------------------StyleSheet------------------------------------>
-        <link rel="stylesheet" href="../static/styles/verify-success.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/verify-success.css') }}">
         <title>Email verification</title>
     </head>
 
     <body>
         <div class="container">
-            <img src="../static/images/tick-icon.jpeg" alt="tick-icon">
+		<img src="{{ url_for('static', filename='images/tick-icon.jpeg') }}" alt="tick-icon">
             <h2><strong>Email Verified</strong></h2>
             <p>Your email address was successfully verified.</p>
-	    <a href="{{ url_for('login') }}">Ok</a>
+	    <a href="{{ url_for('app.login') }}">Ok</a>
         </div>
     </body>
 </html>

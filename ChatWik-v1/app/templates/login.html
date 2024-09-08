@@ -5,12 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!----------------------------------------StyleSheet------------------------------------>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-        <link rel="stylesheet" href="../static/styles/login.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/components.css') }}">
 	<!-------------------------------------JavaScript------------------------------------>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-	<script type="module" src="../static/scripts/login.js"></script>
+	<script type="module" src="{{ url_for('static', filename='scripts/login.js') }}"></script>
         <title>Login</title>
     </head>
     <body>
@@ -24,10 +23,13 @@
 
             <div class="entire-login-box">
                 <div class="login-box">
-                    <form action="{{ url_for('login') }}" method="POST">
+                    <form id="login-form">
                         <div class="common" id="header">
                             <h1>Sign in</h1>
-                            <div id="api-status"></div>
+
+			    <!-- Notification Div -->
+			    <div class="auth__alert__msg"></div>
+
                         </div>
                         <div class="form-group common">
                             <input class="form-control" placeholder="Email" type="email" id="email" name="email" required>
@@ -42,19 +44,12 @@
                             <a href="forget_pwd.html">Forgot Password?</a>
                         </div>
                         <div class="common submit-button">
-                            <button type="submit" class="btn btn-success">Login</button>
+                            <button type="submit" id="signin-btn" class="btn btn-success">Login</button>
                             <br>
-                            <p>Don't have an account? <a href="registration.html">Register</a></p>
-                            <!-- {% with message = get_flashed_messages() %}
-                                {% if message %}
-                                    <div class="alert alert-danger fade-in alert-dismissible">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong>Error!</strong> {{ message[0] }}
-                                    </div>
-                                {% endif %}
-                            {% endwith %} -->
+			    <p>Don't have an account? <a href="{{ url_for('app.register') }}">Register</a></p>
                         </div>
                     </form>
+		    <div class="loader"></div>
                 </div>
                 
             </div>

@@ -124,11 +124,6 @@ button {
     background-color: dimgrey;
 }
 
-#errorDiv {
-    display: none;
-}
-
-
 .verification-modal {
     position: absolute;
     top: 0;
