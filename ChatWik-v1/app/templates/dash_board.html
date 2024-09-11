@@ -13,23 +13,23 @@
 </head>
 <body>
 
-    <div id="container">
-        <nav class="chat-app-nav">
+    <div class="container flex">
+        <nav class="chat-app-nav flex-col">
             <div class="profile">
-                <img width="24" height="24" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
+                <img width="40" height="40" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
             </div>
 
-            <div class="nav-group all-chats">
-                <img width="24" height="24" src="https://img.icons8.com/plumpy/24/chat-message.png" alt="chat-message"/>
+            <div class="nav-group all-chats flex-col">
+                <img width="40" height="40" src="https://img.icons8.com/plumpy/24/chat-message.png" alt="chat-message"/>
                 <p>All Chats</p>
             </div>
 
-            <div class="nav-group saved">
+            <div class="nav-group saved flex-col">
                 <img src="../static/images/saved-chats-icon.png" alt="saved-chats-icon">
                 <p>Saved</p>
             </div>
 
-            <div class="nav-group settings">
+            <div class="nav-group settings flex-col">
                 <img src="../static/images/settings-icon.svg" alt="settings-icon">
                 <p>Settings</p>
             </div>
@@ -41,19 +41,19 @@
                 <img src="../static/images/search-icon.svg" alt="search-icon">
             </div>
 
-            <div class="indie-chats">
+            <div class="indie-chats flex">
                 <div class="chat-img">
-                    <img src="../static/images/chat-img" alt="chat-img">
+                    <img width="40" height="40" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
                 </div>
 
                 <div class="indie-chat-inner-box">
-                    <div class="indie-chat-title-box">
-                        <h2>Chat Title</h2>
+                    <div class="indie-chat-title-box flex">
+                        <p class="chat-title">Chat Title</p>
                         <p>2:34pm</p>
                     </div>
 
-                    <div class="indie-chat-details">
-                        <p>chat snipppet goes here...</p>
+                    <div class="indie-chat-details flex">
+                        <p class="chat-snippet">last message snipppet goes here...</p>
                         <img class="text-status" src="../static/images/sent-tick" alt="sent-tick">
                         <p class="unread-count">3</p>
                     </div>
@@ -62,41 +62,40 @@
         </aside>
 
         <div class="chat-box">
-             <div class="chat-header-box">
+             <div class="chat-header-box flex">
                 <div>
-                    <h2>Chat Title</h2>
+                    <p class="chat-title">Chat Title</p>
                     <p>11 members online</p> 
                 </div>
 
-                <div>
+                <div class="chat-header-icons">
                     <img src="../static/images/search-icon.svg" alt="search-icon">
                     <img src="../static/images/call-icon.svg" alt="call-icon">
                     <img src="../static/images/vid-call-icon.svg" alt="vid-call-icon">
                     <!-- <img src="../static/images/options-icon" alt="options-icon"> -->
                 </div>
+            </div>
 
-                <div class="chat-area">
+            <div class="chat-area">
 
+            </div>
+
+            <div class="send-message-area flex">
+                <div class="write-message">
+                    <img width="30" height="30" src="https://img.icons8.com/deco/48/attach.png" alt="attach"/>
+                    <input type="text" placeholder="Write your message">
+                    <img src="../static/images/voice-message-icon.svg" alt="voice-message-icon">
                 </div>
 
-                <div class="send-message-area">
-                    <div class="write-message">
-                        <img width="48" height="48" src="https://img.icons8.com/deco/48/attach.png" alt="attach"/>
-                        <input type="text" placeholder="Write your message">
-                        <img src="../static/images/voice-message-icon.svg" alt="voice-message-icon">
-                    </div>
-
-                    <div class="send-button">
-                        <input type="button" value="Send">
-                        <img width="48" height="48" src="https://img.icons8.com/deco/48/paper-plane.png" alt="paper-plane"/>
-                    </div>
-                </div>
-             </div>
+                <button type="submit" class="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </div>
-
+<!-- 
         <aside class="chat-info">
 
-        </aside>
+        </aside> -->
     </div>
 
     <!-- <header>
