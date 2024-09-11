@@ -68,7 +68,7 @@ body{
     border-radius: 7px;
     border: none;
     background-color: rgb(245, 245, 240);
-    padding: 16px;
+    padding: 16px 50px 16px 16px;
     font-size: 1.2rem;
 }
 
