@@ -13,13 +13,7 @@ from models.user import User
 def all_users():
     """Retrieve all users."""
     users = storage.all(User).values()
-    user_list = [
-            {
-                "id": user.id,
-                "username": user.name,
-                "email": user.email
-            } for user in users
-    ]
+    user_list = [user.to_dict() for user in users]
     return jsonify(user_list)
 
 
@@ -31,11 +25,5 @@ def active_users():
 
     # Use list comprehension to filter active user
     active_users = [user for user in users if user.is_active]
-    user_list = [
-            {
-                "id": user.id,
-                "username": user.name,
-                "email": user.email
-            } for user in active_users
-    ]
+    user_list = [user.to_dict() for user in active_users]
     return jsonify(user_list)
