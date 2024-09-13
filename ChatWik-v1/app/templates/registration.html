@@ -3,14 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------------------------------------StyleSheet------------------------------------>
-	<link rel="stylesheet" href="../static/styles/registration.css">
-	<link rel="stylesheet" href="../static/styles/components.css">
+
+	    <link rel="stylesheet" href="../static/styles/registration.css">
+	    <link rel="stylesheet" href="../static/styles/components.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-	<!----------------------------------------JavaScript------------------------------------>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="module" src="../static/scripts/register.js"></script>
-        <title>Registration</title>
+        <title>Registration | ChatWik</title>
     </head>
 
     <body>
@@ -72,10 +69,10 @@
 
         <div class="verification-modal">
             <div class="verification-modal-content">
-		    <img src="{{ url_for('static', filename='images/email_icon.jpeg') }}" alt="email_icon">
+		    <img src="../static/images/email_icon.jpeg" alt="email_icon">
                 <p>Enter Confirmation Code</p>
                 <p>
-	    	    Enter the confirmation code we sent to <span id="append-email">
+	    	        Enter the confirmation code we sent to <span id="append-email">
                     <br>
                     <a href="#">
                         <strong>Resend Code</strong>
@@ -86,11 +83,13 @@
                         <input id="token" placeholder="Confirmation Code">
                         <button id="verify-btn" type="submit">Next</button>
                         <br />
-			<a href="{{ url_for('app.register') }}"><strong>Cancel</strong></a>
+			            <a href="../templates/registration.html"><strong>Cancel</strong></a>
                     </div>
                 </form>
             </div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="module" src="../static/scripts/register.js"></script>
     </body>
 </html>

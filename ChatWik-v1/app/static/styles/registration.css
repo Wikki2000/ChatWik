@@ -93,6 +93,21 @@ input {
     border: none;
 }
 
+input[type="password"]::-ms-reveal, 
+input[type="password"]::-ms-clear { 
+    display: none;
+}
+
+input[type="password"]::-webkit-clear-button, 
+input[type="password"]::-webkit-password-toggle-button,
+input[type="password"]::-webkit-password-toggle { 
+    display: none;
+}
+
+input[type="password"]::-moz-password-toggle {
+    display: none;
+}
+
 #pwd1,
 #pwd2 {
     position: relative;
@@ -122,6 +137,7 @@ button {
     border-radius: 5px;
     border: none;
     background-color: dimgrey;
+    cursor: pointer;
 }
 
 .verification-modal {

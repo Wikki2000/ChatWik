@@ -1,43 +1,49 @@
-import { togglePasswordVisibility, ajaxRequest, alertBox } from './utils.js'; 
+import { togglePasswordVisibility, ajaxRequest, alertBox } from './utils.js';
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', () => {
   togglePasswordVisibility('password', 'passwordIconId');
 
-  $('#login-form').submit(function (event) {
-    event.preventDefault();
-    const alertDivClass = 'auth__alert__msg';
-    $(`.${alertDivClass}`).hide();
-    $('.loader').show();
-    $('#signin-btn').hide();
+  const loginForm = document.getElementById('login-form');
+  const loader = document.querySelector('.loader');
+  const signinBtn = document.getElementById('signin-btn');
+  const alertDivClass = 'auth__alert__msg';
 
-    const data = JSON.stringify(
-      {
-        email: $('#email').val(),
-        password: $('#password').val()
-      }
-    );
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    document.querySelector(`.${alertDivClass}`).style.display = 'none';
+    loader.style.display = 'block';
+    signinBtn.style.display = 'none';
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const data = JSON.stringify({
+      email: email,
+      password: password,
+    });
+
     const url = '/chatwik/account/signin';
-    ajaxRequest(url, "POST", data,
-      (response) => {
-        if (response.status == "Success") {
-          const display_name = response.user.username ? response.user.username : response.user.name;
-          
+
+    ajaxRequest(url, 'POST', data)
+      .then(response => {
+        if (response.status === "Success") {
+          const displayName = response.user.username || response.user.name;
+
           const msg = 'Login Successfully';
           alertBox(alertDivClass, msg, false);
 
           setTimeout(() => {
-            window.location.href = '/chatwik/dashboard?display_name=' + encodeURIComponent(display_name);
-          }, 2000);
+            window.location.href = `/chatwik/dashboard?display_name=${encodeURIComponent(displayName)}`;
+          }, 1000);
         }
-      },
-      (error) => {
+      })
+      .catch(error => {
         const msg = 'Invalid Email or Password';
         alertBox(alertDivClass, msg);
 
-        // Hide loader and display button to user on error
-        $('.loader').hide();
-        $('#signin-btn').show()
-      }
-    );
-  })
+        loader.style.display = 'none';
+        signinBtn.style.display = 'block';
+      });
+  });
 });

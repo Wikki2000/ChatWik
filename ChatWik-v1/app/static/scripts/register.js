@@ -1,45 +1,39 @@
 import { ajaxRequest, togglePasswordVisibility, alertBox } from './utils.js';
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', () => {
 
   const alertDivClass = 'auth__alert__msg';
 
-  // Toggle password visibility when click on the eye icon
   togglePasswordVisibility('password', 'pwd1Icon');
   togglePasswordVisibility('confirmPassword', 'pwd2Icon');
 
-  // Ensure password match and meet some criteria.
-  $('button').click(function () {
-
-    const pwd1 = $("#password").val();
-    const pwd2 = $("#confirmPassword").val();
+  document.querySelector('button').addEventListener('click', (event) => {
+    const pwd1 = document.querySelector("#password").value;
+    const pwd2 = document.querySelector("#confirmPassword").value;
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
     if (pwd1 !== pwd2) {
       event.preventDefault();
-      const msg = 'Password must match';
+      const msg = 'Passwords must match';
       alertBox(alertDivClass, msg);
-
     } else if (!passwordPattern.test(pwd1)) {
       event.preventDefault();
-      const msg = 'Password must be atleast 8 characters and ' +
-                  'contains uper, lowercase and special character';
+      const msg = 'Password must be at least 8 characters and contain an uppercase letter, a lowercase letter, a number, and a special character';
       alertBox(alertDivClass, msg);
     }
   });
 
-  // Handle Confirmation of Email
-  $('#form').submit(function (event) {
+  document.querySelector('#form').addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const token = $('#token').val();
-    const data = JSON.stringify({ token: token });
+    const token = document.querySelector('#token').value;
+    const data = JSON.stringify({ token });
 
     const url = '/chatwik/account/verify';
 
     ajaxRequest(url, "POST", data,
       (response) => {
-        if (response.status == "Success") {
+        if (response.status === "Success") {
           window.location.href = '/chatwik/account/verify-success';
         }
       },
@@ -49,53 +43,48 @@ $(document).ready(function () {
     );
   });
 
-  // Handle User Registration
-  $('#reg-form').submit(function (event) {
+  document.querySelector('#reg-form').addEventListener('submit', (event) => {
     event.preventDefault();
 
-    // Show loader and hide button each time form is submitted
-    $('.loader').show();
-    $('.signup-btn').hide();
+    document.querySelector('.loader').style.display = 'block';
+    document.querySelector('.signup-btn').style.display = 'none';
 
-    // Clear Previous Message
-    $(`.${alertDivClass}`).hide();
+    document.querySelector(`.${alertDivClass}`).style.display = 'none';
 
-    const firstname = $("#firstname").val();
-    const lastname = $("#lastname").val();
-    const username = $("#username").val();
-    const password = $("#password").val();
-    const email = $("#email").val();
+    const firstname = document.querySelector("#firstname").value;
+    const lastname = document.querySelector("#lastname").value;
+    const username = document.querySelector("#username").value;
+    const password = document.querySelector("#password").value;
+    const email = document.querySelector("#email").value;
 
-    const data = JSON.stringify(
-      {
-        first_name: firstname,
-        last_name: lastname,
-        username: username,
-        password: password,
-        email: email
-      });
+    const data = JSON.stringify({
+      first_name: firstname,
+      last_name: lastname,
+      username: username,
+      password: password,
+      email: email
+    });
 
     const url = '/chatwik/account/signup';
 
     ajaxRequest(url, "POST", data,
       (response) => {
-        if (response.status == "Success") {
-          const msg = 'Registration Successfull. Continue to Verify Email';
+        if (response.status === "Success") {
+          const msg = 'Registration Successful. Continue to Verify Email';
           alertBox(alertDivClass, msg, false);
-          $('.loader').hide();
+          document.querySelector('.loader').style.display = 'none';
+          
           setTimeout(() => {
-            $('.verification-modal').show();
-	    $("P#append-email").append(email);
+            document.querySelector('.verification-modal').style.display = 'block';
+            document.querySelector("p#append-email").textContent = email;
           }, 2000);
-         }
+        }
       },
       (error) => {
-        const msg = 'This user already exist';
+        const msg = 'This user already exists';
         alertBox(alertDivClass, msg);
-
-        // Hide loader and display button to user on error
-        $('.loader').hide();
-        $('.signup-btn').show()
+        document.querySelector('.loader').style.display = 'none';
+        document.querySelector('.signup-btn').style.display = 'block';
       }
     );
   });
