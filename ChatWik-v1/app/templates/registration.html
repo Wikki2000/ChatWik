@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!----------------------------------------StyleSheet------------------------------------>
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/registration.css') }}?{{ cach_id }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/components.css') }}?{{ cache_id }}">
+	<link rel="stylesheet" href="../static/styles/registration.css">
+	<link rel="stylesheet" href="../static/styles/components.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 	<!----------------------------------------JavaScript------------------------------------>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="module" src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+	<script type="module" src="../static/scripts/register.js"></script>
         <title>Registration</title>
     </head>
 
@@ -26,7 +26,7 @@
                 <div class="reg-box">
                     <h1>Create an account</h1>
 		    <div class="auth__alert__msg"></div>
-		    <p>Already have an account? <a href="{{ url_for('app.login') }}">Login</a></p>
+		    <p>Already have an account? <a href="../templates/login.html">Login</a></p>
                     <form id="reg-form">
                         <div class="name-group">
                             <input class="form-control" id="firstname" name="firstname" placeholder="First name" required>

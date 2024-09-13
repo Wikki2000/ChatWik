@@ -30,7 +30,7 @@ body{
 
 .chat-app-nav {
     border-right: 3px solid rgb(245, 245, 240);
-    padding: 15px;
+    /* padding: 15px; */
     /* width: fit-content; */
 }
 
@@ -42,9 +42,19 @@ body{
     cursor: pointer;
 }
 
+.profile {
+    margin: 15px 0;
+}
+
 .nav-group {
-    margin-top: 50px;
     cursor: pointer;
+    padding: 15px;
+}
+
+.selected-nav-group,
+.nav-group:hover {
+    background-color: rgb(245, 245, 240);
+    width: 100%;
 }
 
 .nav-group img {
@@ -133,6 +143,10 @@ body{
     border-bottom: 3px solid rgb(245, 245, 240);
 }
 
+.to-open-chat-info {
+    cursor: pointer;
+}
+
 .chat-header-icons img {
     width: 30px;
     height: 30px;
@@ -140,11 +154,60 @@ body{
     margin-left: 10px;
 }
 
+.chat-area {
+    /* border: 1px solid black; */
+    height: calc(100% - 180px);
+    background: rgb(245, 245, 240);
+    border-radius: 0 0 15px 15px;
+    padding: 15px;
+}
+
+.chat-bubble {
+    width: fit-content;
+    max-width: 70%;
+    /* width: ; */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 15px;
+    position: relative;
+    clear: both;
+    word-wrap: break-word;
+    font-size: 1rem;
+}
+
+.sender-display-name,
+.client-display-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.received-message,
+.sent-message {
+    margin: 7px 0 15px 0;
+}
+
+.sent {
+    background-color: rgb(153, 204, 255);
+    color: black;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 7px;
+}
+
+.received {
+    background-color: rgb(220, 227, 240);
+    color: black;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 7px;
+}
+
 .send-message-area {
     position: absolute;
     bottom: 15px;
     padding: 15px;
     width: 100%;
+    align-items: center;
     /* align-items: center; */
     /* width: 100%; */
 }
@@ -153,14 +216,16 @@ body{
     flex: 4;
 }
 
-.write-message input {
+.message-input {
     width: 100%;
-    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
+    overflow-y: auto;
     font-size: 1.2rem;
     background-color: rgb(245, 245, 240);
     border: none;
     border-radius: 7px;
-    padding: 0 50px 0 50px;
+    padding: 15px 50px;
 }
 
 .write-message img[alt="attach"] {
@@ -173,7 +238,7 @@ body{
 
 .write-message img[alt="voice-message-icon"] {
     position: absolute;
-    right: 90px;
+    right: 150px;
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
@@ -181,17 +246,34 @@ body{
     cursor: pointer;
 }
 
+.emoji-picker {
+    border: none;
+    border-radius: 7px;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.emoji-picker:hover {
+    background-color: rgb(245, 245, 240);
+}
+
+.emoji-picker img {
+    width: 30px;
+    height: 30px;
+}
+
 .send-button {
     width: 50px;
     height: 50px;
-    margin-left: 15px;
     border: none;
     border-radius: 7px;
     cursor: pointer;
 }
 
 .send-button:hover {
-    background-color: rgb(245, 245, 240);;
+    background-color: rgb(245, 245, 240);
 }
 
 .send-button i {

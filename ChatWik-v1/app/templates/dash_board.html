@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/styles/dash_board.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.3/dist/emoji-button.min.js"></script>
     <script src="../static/scripts/dash_board.js"></script>
     <title>ChatWik</title>
 </head>
@@ -19,9 +20,19 @@
                 <img width="40" height="40" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
             </div>
 
-            <div class="nav-group all-chats flex-col">
+            <div class="nav-group all-chats flex-col selected-nav-group">
                 <img width="40" height="40" src="https://img.icons8.com/plumpy/24/chat-message.png" alt="chat-message"/>
                 <p>All Chats</p>
+            </div>
+
+            <div class="nav-group personal-chat flex-col">
+                <img width="48" height="48" src="https://img.icons8.com/deco/48/speech-bubble-with-dots.png" alt="personal-chat"/>
+                <p>Personal Chats</p>
+            </div>
+
+            <div class="nav-group group-chat flex-col">
+                <img width="40" height="40" src="https://img.icons8.com/deco/48/chat.png" alt="group-chat"/>
+                <p>Group Chats</p>
             </div>
 
             <div class="nav-group saved flex-col">
@@ -63,7 +74,7 @@
 
         <div class="chat-box">
              <div class="chat-header-box flex">
-                <div>
+                <div class="to-open-chat-info">
                     <p class="chat-title">Chat Title</p>
                     <p>11 members online</p> 
                 </div>
@@ -77,22 +88,34 @@
             </div>
 
             <div class="chat-area">
-
+                <div class="chat-bubble received">
+                    <p class="sender-display-name">Wisdom Okposin</p>
+                    <p class="received-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores illo ad inventore consectetur! Delectus illo perferendis fuga et quas optio cupiditate eligendi iste quasi harum, vero quaerat omnis deleniti eveniet?</p>
+                </div>
+                <div class="chat-bubble sent">
+                    <p class="client-display-name">Me</p>
+                    <p class="sent-message">Hello World!</p>
+                </div>
             </div>
 
             <div class="send-message-area flex">
                 <div class="write-message">
                     <img width="30" height="30" src="https://img.icons8.com/deco/48/attach.png" alt="attach"/>
-                    <input type="text" placeholder="Write your message">
+                    <!-- <input type="text" placeholder="Write your message"> -->
+                     <div class="message-input" contenteditable="true"></div>
                     <img src="../static/images/voice-message-icon.svg" alt="voice-message-icon">
                 </div>
+
+                <button type="button" class="emoji-picker">
+                    <img width="64" height="64" src="https://img.icons8.com/external-line-icons-royyan-wijaya/64/external-emoji-hana-emojis-line-ii-line-icons-royyan-wijaya-8.png" alt="external-emoji-hana-emojis-line-ii-line-icons-royyan-wijaya-8"/>
+                </button>
 
                 <button type="submit" class="send-button">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
         </div>
-<!-- 
+        <!-- 
         <aside class="chat-info">
 
         </aside> -->

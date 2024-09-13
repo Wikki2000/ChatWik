@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!----------------------------------------StyleSheet------------------------------------>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/components.css') }}">
+	<link rel="stylesheet" href="../static/styles/login.css">
+	<link rel="stylesheet" href="../static/styles/components.css">
 	<!-------------------------------------JavaScript------------------------------------>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="module" src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+	<script type="module" src="../static/scripts/login.js"></script>
         <title>Login</title>
     </head>
     <body>
@@ -46,10 +46,10 @@
                         <div class="common submit-button">
                             <button type="submit" id="signin-btn" class="btn btn-success">Login</button>
                             <br>
-			    <p>Don't have an account? <a href="{{ url_for('app.register') }}">Register</a></p>
+			                <p>Don't have an account? <a href="../templates/registration.html">Register</a></p>
                         </div>
                     </form>
-		    <div class="loader"></div>
+		            <div class="loader"></div>
                 </div>
                 
             </div>
