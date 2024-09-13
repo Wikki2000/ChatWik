@@ -89,8 +89,17 @@ input {
 }
 
 input[type="password"]::-ms-reveal, 
-input[type="password"]::-webkit-reveal-button, 
-input[type="password"]::-moz-credentials-management-field { 
+input[type="password"]::-ms-clear { 
+    display: none;
+}
+
+input[type="password"]::-webkit-clear-button, 
+input[type="password"]::-webkit-password-toggle-button,
+input[type="password"]::-webkit-password-toggle { 
+    display: none;
+}
+
+input[type="password"]::-moz-password-toggle {
     display: none;
 }
 
