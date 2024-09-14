@@ -218,6 +218,7 @@ body{
 
 .message-input {
     width: 100%;
+    max-width: 100%;
     min-height: 50px;
     max-height: 100px;
     overflow-y: auto;
@@ -226,6 +227,28 @@ body{
     border: none;
     border-radius: 7px;
     padding: 15px 50px;
+    color: #838383;
+    white-space: pre-wrap;
+    word-wrap: anywhere;
+    overflow-wrap: anywhere;
+}
+
+.message-input::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+}
+
+.message-input:empty::before {
+    display: block;
+}
+
+.message-input:not(:empty)::before {
+    display: none;
 }
 
 .write-message img[alt="attach"] {
