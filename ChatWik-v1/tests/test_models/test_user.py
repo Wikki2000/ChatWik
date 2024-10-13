@@ -1,45 +1,36 @@
 #!/usr/bin/python3
-"""Models test cases for lecturer module."""
-from models.course import Course
-from models.base_model import Base
-from models.lecturer import Lecturer
-from models.school import School
+"""Models test cases for user module."""
+from models.user import User
+from models.private_message import PrivateMessage
+from models.group import Group
 from models import Storage
 import unittest
-import bcrypt
 
 class TestLecturer(unittest.TestCase):
-    """Define test cases for Lecturer class."""
+    """Define test cases for User class."""
 
     def setUp(self):
         """Set up test environment."""
+
+        # Create User object
         self.storage = Storage()
-        self.attr = {"first_name": "John", "last_name": "Bush",
+        self.user_attr = {"first_name": "John", "last_name": "Bush",
                      "email": "example@gmail.com", "password": "12345"}
-        self.user = Lecturer(**self.attr)
+        self.user = User(**self.user_attr)
         self.session = self.storage.get_session()
         self.session.add(self.user)
         self.session.commit()
 
     def tearDown(self):
         """Teardown test environment for every test."""
-        try:
-            obj = self.session.query(Lecturer).filter_by(
-                    email="example@gmail.com").first()
-            if obj:
-                self.session.delete(obj)
-                self.session.commit()
-        except Exception as e:
-            self.session.rollback()
-            print(f"Error during teardown: {e}")
-        finally:
-            self.session.rollback()
-            self.session.close()
+        self.session.query(User).delete()
+        self.session.query(Group).delete()
+        self.session.commit()
 
-    def test_lecturer_creation(self):
-        """Test that the lecturer object was saved and can be retrieved."""
-        self.assertIsInstance(self.user, Lecturer)
-        obj = self.session.query(Lecturer).filter_by(
+    def test_user_creation(self):
+        """Test that the User object was saved and can be retrieved."""
+        self.assertIsInstance(self.user, User)
+        obj = self.session.query(User).filter_by(
                 email="example@gmail.com").one()
         self.assertIsNotNone(obj)
         self.assertEqual("John", obj.first_name)
@@ -49,58 +40,69 @@ class TestLecturer(unittest.TestCase):
 
     def test_hash_password(self):
         """Test that password is correctly hashed."""
-        self.user.hash_password(self.attr["password"])
-        self.assertNotEqual(self.user.password, self.attr["password"])
+        self.user.hash_password()
+        self.assertNotEqual(self.user.password, self.user_attr["password"])
 
     def test_check_password(self):
         """Test that password is correctly verified."""
-        self.user.hash_password(self.attr["password"])
-        self.assertTrue(self.user.check_password(self.attr["password"]))
+        self.user.hash_password()
+        self.assertTrue(self.user.check_password(self.user_attr["password"]))
         self.assertFalse(self.user.check_password("wrong password"))
 
-    def test_lecturer_course_relationship(self):
-        """"Test the one-to-many relationship between Lecturer and Course."""
-        course1 = Course(course_title="Physics", course_code="ENG212",
-                         credit_load=3, semester="second",
-                         lecturer_id=self.user.id)
-        course2 = Course(course_title="Mathematics", course_code="MTH101",
-                         credit_load=3, semester="First",
-                         lecturer_id=self.user.id)
-        self.session.add_all([course1, course2])
+    def test_user_privatemessage_relationship(self):
+        """Test relationship b/w user and privatemessage class."""
+        reciever = User(first_name="Moses", last_name="Okon",
+                        email="mok@gmail.com", password="12345")
+        self.session.add(reciever)
         self.session.commit()
 
-        # Refresh the lecturer object to get the latest data from the DB
-        self.session.refresh(self.user)
-        self.assertEqual(len(self.user.courses), 2)
-
-    def test_cascade_delete_courses(self):
-        """Test that deleting a lecturer deletes associated courses."""
-        course = Course(course_title="Physics", course_code="ENG212",
-                         credit_load=3, semester="second",
-                         lecturer_id=self.user.id)
-        self.session.add(course)
+        pmsg = PrivateMessage(
+            sender_id=self.user.id, reciever_id=reciever.id, text="Hw u dey"
+        )
+        self.session.add(pmsg)
         self.session.commit()
 
-        # Verify course exists
-        self.assertEqual(self.session.query(Course).count(), 1)
+        self.assertIsNotNone(pmsg)
 
-        # Delete the lecturer
-        self.session.delete(self.user)
+        # Retrieved the message and check some attribute
+        retrieved_msg = self.session.query(PrivateMessage).filter_by(
+            sender_id=self.user.id, reciever_id=reciever.id
+        ).first()
+        self.assertIsNotNone(retrieved_msg)
+
+        # Test attributes of sending end
+        self.assertEqual(retrieved_msg.sender.first_name, self.user.first_name) 
+        self.assertEqual(retrieved_msg.reciever.first_name, reciever.first_name)
+        self.assertEqual(
+            retrieved_msg.sender_id, reciever.recieved_messages[0].sender_id
+        )
+        self.assertEqual(
+            retrieved_msg.sender_id, self.user.sent_messages[0].sender_id
+        )
+
+    def test_user_group_relationship(self):
+        """Test relationship b/w user and privatemessage class."""
+        group1 = Group(name="Coding")
+        self.session.add(group1)
         self.session.commit()
 
-        # Verify that the course was also deleted
-        self.assertEqual(self.session.query(Course).count(), 0)
-
-    def test_lecturer_school_relationship(self):
-        """"Test the one-to-many relationship between Lecturer and School."""
-        school = School(school_name="AKSU", lecturer_id=self.user.id)
-        self.session.add(school)
+        group2 = Group(name="Engineer")
+        self.session.add(group2)
         self.session.commit()
 
-        # Refresh the lecturer object to get the latest data from the DB
-        self.assertEqual(len(self.user.schools), 1)
+        # Add user to groups
+        group1.users.append(self.user)
+        group2.users.append(self.user)
+
+        retrieved_user = self.session.query(User).filter_by(
+            email=self.user.email
+        ).first()
+        self.assertIsNotNone(retrieved_user)
+        self.assertEqual(len(retrieved_user.groups), 2)
+
+    def test_user_private_msg_relationship(self):
+        pass
 
 
 if __name__ == "__main__":
     unittest.main()
-

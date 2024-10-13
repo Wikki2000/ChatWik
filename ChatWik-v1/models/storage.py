@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """This module models the storage of the authentication API"""
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from dotenv import load_dotenv
 from os import getenv
+from typing import Type, Any
+from sqlalchemy import or_
 
 load_dotenv()
 
@@ -26,8 +28,8 @@ class Storage:
         url = f'mysql+mysqldb://{username}:{password}@localhost:5432/{database}'
         self.__engine = create_engine(url, pool_pre_ping=True)
         Base.metadata.create_all(self.__engine)
-        session = sessionmaker(bind=self.__engine)
-        self.__session = session()
+        session_factory = sessionmaker(bind=self.__engine)
+        self.__session = scoped_session(session_factory)
 
     def all(self, cls=None):
         """Retrieve data from database."""
@@ -59,6 +61,25 @@ class Storage:
         """Retrieve an instance with it's ID."""
         obj = self.__session.query(cls).filter_by(id=obj_id).first()
         return obj
+
+    def get_by_field(self, model: Type, field: str, value: Any) -> object:
+        """
+        General function to filter a model by it field and class.
+
+        :param model - SQLAlchemy model class (e.g., Lecturer, Student etc.)
+        :param field - The colum or attribute to filter for in the model
+        :param value - The corresponding value of field to filter on
+
+        :rtype - The first matching object or None if not found
+        """
+        try:
+
+            # Get the attributes and filter by it corresponding value.
+            return self.__session.query(model).filter(
+                getattr(model, field) == value
+            ).first()
+        except AttributeError:
+            return None
 
     def save(self):
         """ Commit change to database """

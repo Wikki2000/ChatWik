@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!----------------------------------------StyleSheet------------------------------------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="/static/styles/dash_board.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.3/dist/emoji-button.min.js"></script>
+    <script type="module" src="/static/scripts/dashboard.js"></script>
+    <title>ChatWik</title>
+  </head>
+  <body>
+
+    <div class="container flex">
+      <nav class="chat-app-nav flex-col">
+        <div class="profile">
+          <img width="40" height="40" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
+        </div>
+
+        <div id="all-chat" class="nav-group all-chats flex-col">
+          <img width="40" height="40" src="https://img.icons8.com/plumpy/24/chat-message.png" alt="chat-message"/>
+          <p>All Chats</p>
+        </div>
+
+        <div id="private-chat" class="nav-group personal-chat flex-col">
+          <img width="48" height="48" src="https://img.icons8.com/deco/48/speech-bubble-with-dots.png" alt="personal-chat"/>
+          <p>Personal Chats</p>
+        </div>
+
+        <div id="group-chat" class="nav-group group-chat flex-col">
+          <img width="40" height="40" src="https://img.icons8.com/deco/48/chat.png" alt="group-chat"/>
+          <p>Group Chats</p>
+        </div>
+
+        <div class="nav-group saved flex-col">
+          <img src="/static/images/saved-chats-icon.png" alt="saved-chats-icon">
+          <p>Saved</p>
+        </div>
+
+        <div class="nav-group settings flex-col">
+          <img src="/static/images/settings-icon.svg" alt="settings-icon">
+          <p>Settings</p>
+        </div>
+      </nav>
+
+      <aside class="chat-sel-box">
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <img src="/static/images/search-icon.svg" alt="search-icon">
+        </div>
+
+        <div id="active__chat-section">
+
+          <div class="indie-chats flex">
+            <div class="chat-img">
+              <img width="40" height="40" src="https://img.icons8.com/plumpy/24/user.png" alt="user"/>
+            </div>
+
+            <div id="chat-inner-box" class="indie-chat-inner-box">
+              <div class="indie-chat-title-box flex">
+                <p class="chat-title">General Group</p>
+                <p>2:34pm</p>
+              </div>
+
+              <div class="indie-chat-details flex">
+                <p class="chat-snippet">last message snipppet goes here...</p>
+                <img class="text-status" src="../static/images/sent-tick" alt="sent-tick">
+                <p class="unread-count">3</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <div class="chat-box">
+        <div class="chat-header-box flex">
+          <div class="to-open-chat-info">
+            <p class="chat-title">General Group</p>
+            <p>11 members online</p> 
+          </div>
+
+          <div class="chat-header-icons">
+            <img src="../static/images/search-icon.svg" alt="search-icon">
+            <img src="../static/images/call-icon.svg" alt="call-icon">
+            <img src="../static/images/vid-call-icon.svg" alt="vid-call-icon">
+            <!-- <img src="../static/images/options-icon" alt="options-icon"> -->
+          </div>
+        </div>
+
+        <div class="chat-area">
+          <div class="chat-bubble received">
+            <p class="sender-display-name">Wisdom Okposin</p>
+            <p class="received-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores illo ad inventore consectetur! Delectus illo perferendis fuga et quas optio cupiditate eligendi iste quasi harum, vero quaerat omnis deleniti eveniet?</p>
+          </div>
+          <div class="chat-bubble sent">
+            <p class="client-display-name">Me</p>
+            <p class="sent-message">Hello World!</p>
+          </div>
+        </div>
+
+        <div class="send-message-area flex">
+          <div class="write-message">
+            <img width="30" height="30" src="https://img.icons8.com/deco/48/attach.png" alt="attach"/>
+            <!-- <input type="text" placeholder="Write your message"> -->
+            <div class="message-input" contenteditable="true"></div>
+            <img src="../static/images/voice-message-icon.svg" alt="voice-message-icon">
+          </div>
+
+          <button type="button" class="emoji-picker">
+            <img width="64" height="64" src="https://img.icons8.com/external-line-icons-royyan-wijaya/64/external-emoji-hana-emojis-line-ii-line-icons-royyan-wijaya-8.png" alt="external-emoji-hana-emojis-line-ii-line-icons-royyan-wijaya-8"/>
+          </button>
+
+          <button type="submit" class="send-button">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <!-- 
+        <aside class="chat-info">
+
+        </aside> -->
+    </div>
+
+    <!-- <header>
+      <a id="profile" href="#">
+      <i id="user-icon" class="fas fa-3x fa-user"></i>
+      <p>Edit profile</p>
+      </a>
+
+      <div id="header">
+      <a href="#">Log out</a>
+      </div>
+      </header>
+      <div class="container">
+      <div class="welcome">
+      <i id="l-icon" class="fas fa-2x fa-user"></i><h4 id="welcome"></h4><i id="r-icon" class="fas fa-2x fa-user"></i>
+      </div>
+      <div class="btn">
+      <a href="#">Active Members</a>
+      <a href="#">All Members</a>
+      <a href="#">Notify Member</a>
+      <a href="#">Chat Room</a>
+      </div> -->
+      <!-- Extra div for storing data -->
+      <!-- <div id="storage" data-user_name="{{ display_name }}">
+        </div> -->
+  </body>
+</html>

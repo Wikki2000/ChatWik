@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!----------------------------------------StyleSheet------------------------------------>
+        <link rel="stylesheet" href="/static/styles/verify-email.css" />
+	<link rel="stylesheet" href="/static/styles/components.css">
+        <!----------------------------------------Script------------------------------------>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="module" src="/static/scripts/auth/veriy-email.js"></script>
+        <title>Verify Email</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="top">
+		<div class="auth__alert__msg"></div>
+                <img src="/static/images/email_icon.jpeg" alt="email_icon">
+                <strong>Enter Confirmation Code</strong>
+		<p>Enter the confirmation code we sent to <br />{{ email }} <a href="#"><strong>Resend Code</strong></a></p>
+                <form id="verify-form">
+                    <div id="form-sect">
+                        <input id="token" placeholder="Confirmation Code" \><br \>
+                        <button type="submit">Next</button><br />
+			<a href="{{ url_for('app_views.register') }}"><strong>Go Back</strong></a>
+                    </div>
+                </form>
+            </div>
+	    <div class="loader"></div>
+            <div class="buttom">
+		    <p>Have an account? <a href="{{ url_for('app_views.login') }}"><strong>Login</strong></a>
+            </div>
+        </div>
+    </body>
+</html>

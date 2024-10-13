@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+body .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+body .container .top {
+    border: 1px solid black;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+body .container .top #form-sect {
+    display: flex;
+    flex-direction: column;
+}
+body .container .top p {
+    text-align: center;
+}
+body .container .top #form-sect a {
+    text-decoration: none;
+    text-align: center;
+}
+body .container .top #form-sect a, body .container .top #form-sect input, body .container .top #form-sect button {
+    padding: 5px;
+    border-radius: 7px;
+}
+body .container .top #form-sect button {
+    background-color: blue;
+    color: white;
+}
+body .container .buttom {
+    border: 1px solid black;
+    margin-top: 15px;
+    width: 40%;
+    text-align: center;
+}

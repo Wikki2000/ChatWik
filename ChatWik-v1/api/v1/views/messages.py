@@ -1,101 +1,58 @@
 #!/usr/bin/python3
-"""Handle API views for message.""" 
-from api.v1.views import app_views
+"""Handle API views for message."""
+from api.v1.views import api_views
 from flask import abort, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger.utils import swag_from
 from models import storage
-from models.message import Message
+from models.private_message import PrivateMessage
+from sqlalchemy import or_
 
 
-@app_views.route("/messages", strict_slashes=False)
+@api_views.route(
+    "/receiver/<string:receiver_id>/private-messages", strict_slashes=False
+)
 @swag_from("documentation/messages/get_message.yml")
-#@jwt_required()
-def get_messages():
+@jwt_required()
+def get_messages(receiver_id):
     """
-    Retrieve all messages and it coressponding users.
-    This message object are sorted with respest to timestamp.
+    Retrieve all private messages between the logged-in user and the receiver.
+    Messages are sorted by timestamp (ascending order).
     """
-    messages = storage.all(Message).values()
-    sort_messages = sorted(messages, key=lambda msg: msg.timestamp)
-    msg_list = [
-            {
-                "id": message.id, "created_by": message.user.name,
-                "created_at": message.timestamp, "content": message.content
-            } for message in sort_messages
-    ]
-    return jsonify(msg_list), 200
+    session = storage.get_session()
+    sender_id = get_jwt_identity()
 
+    # Retrieve all messages between the sender and receiver, ordered by timestamp
+    messages = session.query(PrivateMessage).filter(
+        or_(
+            (PrivateMessage.sender_id == sender_id) & (PrivateMessage.reciever_id == receiver_id),
+            (PrivateMessage.sender_id == receiver_id) & (PrivateMessage.reciever_id == sender_id)
+        )
+    ).order_by(PrivateMessage.created_at.asc()).all()
 
-@app_views.route("/messages/<mesg_id>", methods=["DELETE"], strict_slashes=False)
-@swag_from("documentation/messages/del_message.yml")
-def del_messages(mesg_id):
-    """Handle view for message deletion."""
-    messages = storage.all(Message)
-    key = "Message." + mesg_id
-    message = messages.get(key)
-    if not message:
-        abort(404)
-    storage.delete(message)
-    storage.save()
-    return jsonify({
-        "status": "Success", 
-        "message": "Message Deleted Successfully"
-        }), 200
-
-
-@app_views.route("/messages/<mesg_id>", methods=["PUT"], strict_slashes=False)
-@swag_from("documentation/messages/put_message.yml")
-def put_messages(mesg_id):
-    """Handle view for updating message."""
-    data = request.get_json()
-    if not data:
-        abort(400, "Not a valid JSON")
-
-    messages = storage.all(Message)
-    key = "Message." + mesg_id
-    message = messages.get(key)
-    if not message:
+    # If no messages found, return 404
+    if not messages:
         abort(404)
 
-    # User should only be allow to update msg cintent..
-    ignored_field = ["id", "timestamp", "user_id"]
-    for key, value in data.items():
-        if key not in ignored_field:
-            setattr(message, key, value)
-    storage.save()
-    return jsonify({
-        "id": message.id,
-        "content": message.content,
-        "user_id": message.user_id,
-        "timestamp": message.timestamp
-        }), 200
-
-
-@app_views.route("/messages", methods=["POST"])
-@swag_from("documentation/messages/post_message.yml")
-#@jwt_required()
-def post_message():
-    """This endpoint handle view for creation of message."""
-    data = request.get_json()
-    user_id = get_jwt_identity()
-
-    # Handle 400 error
-    if not data:
-        error = {"status": "Bad Request", "message": "Empty Request Body"}
-        return jsonify(error), 400
-    elif not data.get("content"):
-        error = {"status": "Bad Request", "message": "content field missing"}
-        return jsonify(error), 400
-
-    # Create message
-    message = Message(user_id=user_id, content=data.get("content"))
-    storage.new(message)
-    storage.save()
-    return jsonify({
-        "id": message.id,
-        "content": message.content,
-        "username": message.user.name,
-        "user_id": message.user_id,
-        "timestamp": message.timestamp
-        }), 201
+    return jsonify([
+        {
+            "sender": {
+                "first_name": msg.sender.first_name,
+                "last_name": msg.sender.last_name,
+                "username": msg.sender.username,
+                "profile_photo": msg.sender.profile_photo,
+                "sender_id": msg.sender.id
+            },
+            "receiver": {
+                "first_name": msg.reciever.first_name,
+                "last_name": msg.reciever.last_name,
+                "username": msg.reciever.username,
+                "profile_photo": msg.reciever.profile_photo,
+                "reciever_id": msg.reciever.id
+            },
+            "message": {
+                "content": msg.text,
+                "timestamp": msg.created_at
+            }
+        } for msg in messages
+    ]), 200
