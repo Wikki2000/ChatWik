@@ -1,0 +1,148 @@
+@import url('/static/css/variable.css');
+
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+h1,  {
+    color: var(--primary-color);
+}
+
+.entire-box {
+    width: 80%;
+    margin: 100px auto;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.cw-description {
+    position: relative;
+    width: 50%;
+    border-radius: 20px;
+    height: 500px;
+}
+
+.cw-description::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.description-content {
+    position: relative;
+    background-color: var(--primary-color);
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 20px;
+    background-image: var(--background-image);
+    background-size: cover;
+    
+    p {
+        color: var(--secondary-color);
+    }
+}
+
+.description-content > p:first-of-type {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    font-size: 1.6rem;
+}
+
+.description-content > p:last-of-type {
+    position: absolute;
+    bottom: 0px;
+    left: 4;
+    right: 0;
+    text-align: center;
+}
+
+.entire-reg-box{
+    border-radius: 10px;
+    width: 50%;
+}
+
+.reg-box {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.name-group > input {
+    width: 45%;
+    height: 30px;
+}
+
+.form-group > input {
+    width: 92.6%;
+    height: 30px;
+}
+
+input {
+    margin: 0 0 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+input[type="password"]::-ms-reveal, 
+input[type="password"]::-ms-clear { 
+    display: none;
+}
+
+input[type="password"]::-webkit-clear-button, 
+input[type="password"]::-webkit-password-toggle-button,
+input[type="password"]::-webkit-password-toggle { 
+    display: none;
+}
+
+input[type="password"]::-moz-password-toggle {
+    display: none;
+}
+
+#pwd1,
+#pwd2 {
+    position: relative;
+    display: inline-block;
+}
+
+#pwd1 input,
+#pwd2 input {
+    padding-right: 30px;
+    width: 82%;
+}
+
+.pwd-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer; 
+    font-size: 14px; 
+    color: #aaa;
+}
+.form-group {
+    display: flex;
+}
+input[id="country"], input[id="state"] {
+    width: 45%
+}
+input[id="state"] {
+    margin-left: 4px;
+}
