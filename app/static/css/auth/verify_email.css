@@ -1,0 +1,233 @@
+@import url('/static/css/variable.css');
+
+* {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/* ==================== RIGHT RECTANGLES ======================= */
+.app-background__card--right {
+  position: relative;
+  top: 50px;
+  left: 50%;
+  width: 255px;
+  height: 262px;
+  margin-top: 40px;
+}
+
+.app-background__card--right-secondary {
+  position: relative;
+  top: 50px;
+  left: 80%;
+  width: 255px;
+  height: 262px;
+  margin-top: 0px;
+}
+
+.app-background__card--right-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+  mix-blend-mode: color-dodge;
+}
+
+
+.app-background__card--right-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+/* ==================== LEFT RECTANGLES ======================= */
+.app-background__card--left {
+  position: relative;
+  left: 50px;
+  bottom: -200px;
+  width: 255px;
+  height: 262px;
+  margin-top: -100px;
+}
+
+.app-background__card--left-secondary {
+  position: relative;
+  left: 50px;
+  bottom: -200px;
+  width: 255px;
+  height: 262px;
+  margin-top: -400px;
+}
+
+.app-background__card--left-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+
+}
+
+.app-background__card--left-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  mix-blend-mode: color-dodge;
+}
+
+/* ===== Button components =====*/
+
+/* ===== Authentication cards components ==== */
+.app-background__card--auth-card {
+  background: var(--primary-color);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-card {
+  position: relative;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 350px;
+  margin: auto;
+  border-radius: 10px;
+  padding: 60px 20px;
+  z-index: 9;
+
+  .btn-pairs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+}
+
+.auth-card__subtitle {
+  color: #1A1919;
+}
+
+.auth-card__content {
+  input {
+    background: #E7E7E7;
+    border: none;
+    width: 80%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 16px;
+    margin: 10px 0;
+  }
+  .auth-card__title {
+    margin: 10px 0;
+    color: var(--primary-color);
+  }
+}
+
+.auth-card__verify-form input {
+  text-align: center;
+  width: 50px;
+  border-radius: 5px;
+}
+
+/* ==== Authentication alert components ==== */
+.auth-alert--success {
+  background: #28a745;
+  border: 1px solid #1e7e34;
+}
+
+.auth-alert--error {
+  background: #f9dedc;
+  color: white;
+}
+
+.auth-alert {
+  display: none;
+  color: #000000;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 16px;
+  width: 250px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+/* ==== Spiner animation while waiting for server response ==== */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+
+
+/*====== Responsive styles =======*/
+@media (min-width: 600px) {
+  .auth-card {
+    max-width: 400px;
+    padding: 60px;
+  }
+
+  .auth-card__content input,
+  .auth-card__button {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth-card {
+    max-width: 500px;
+    padding: 60px;
+  }
+
+  .auth-card__title {
+    font-size: 2em;
+  }
+
+  .auth-card__subtitle {
+    font-size: 1.1em;
+  }
+}
