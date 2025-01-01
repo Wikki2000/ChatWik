@@ -1,0 +1,187 @@
+@import url('variable.css'); /* Import file holding css variables */
+
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  display: flex;
+}
+
+.dashboard__nav {
+  background-color: var(--primary-color);
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.dashboard__logo,
+.dashboard__nav-list,
+.dashboard__user {
+  width: 100%;
+}
+
+.logo {
+  display: block;
+  height: 65px;
+  margin: 20px auto;
+}
+
+.dashboard__nav-list {
+  list-style: none;
+  word-break: keep-all;
+  padding: 0;
+  margin: 0;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+.dashboard__nav-item {
+  padding: 15px 20px;
+  margin: 10px 0;
+  font-size: 17px;
+  color: var(--secondary-color);
+}
+.dashboard__nav-item {
+  cursor: pointer
+}
+
+.dashboard__highlight-item {
+  background-color: var(--highlight-click-item) !important;
+}
+
+.dashboard__nav-item .fa {
+  margin-right: 20px;
+}
+
+.dashboard__user {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 20px;
+  color: #D7DFA3;
+}
+
+.dashboard__user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.dashboard__user-email {
+  font-weight: 500;
+  margin-top: 5px;
+  color: #D7DFA3;
+}
+
+/* ===== The Dashboard Main Area ===== */
+header {
+  border-bottom: 1px solid #0f6292;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #0f6292;
+  color: var(--primary-color);
+
+  div {
+    .fa {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    &:nth-child(3), &:nth-child(4) {
+      margin-left: 15px;
+    }
+    &:hover {
+      color: var(--highlight-click-item);
+    }
+  }
+}
+
+.header__menu-highlihgt {
+  color: var(--highlight-click-item);
+}
+.dashboard__main {
+  width: 100%;
+  background-color: var(--secondary-color);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.dashboard__main-container {
+  margin: 20px;
+}
+
+.dashboard__header-status {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard__second-header--right {
+  display: flex;
+}
+
+.dashboard__second-header {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  margin: 10px;
+  border-radius: 50px;
+}
+.dashboard__main--profile {
+  padding: 50px 0;
+}
+
+.dashboard__main-search {
+  border-radius: 5px;
+  height: 30px;
+  padding: 10px;
+  width: 60%;
+}
+.dashboard__profile {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  width: 95%;
+  margin: auto;
+  margin-top: -140px;
+
+  z-index: 9;
+}
+
+.profile__user-details {
+  width: 340px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 2px 2px 15px 2px #E7E7E7;
+}
+
+.profile__header {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #E7E7E7;
+}
+
+.profile__image {
+  width: 100px;
+}
+
+.proile__title {
+  padding: 10px 0;
+}
+
+.form--profile {
+  padding: 40px;
+}
+
+.profile__more-details {
+  width: 80%;
+  height: inherit;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 2px 2px 15px 2px #E7E7E7;
+}
