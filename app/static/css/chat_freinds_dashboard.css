@@ -1,0 +1,237 @@
+@import url('variable.css');
+
+/*=====================================
+   Common Style for Dashboard Section
+========================================*/
+.dashboard__item-list li {
+  border-bottom: 1px solid #0f6292;
+  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
+  list-style: none;
+}
+
+.dashboard__item-list li a{
+  display: flex;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: var(--primary-color);
+
+  .chat-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 10px;
+    .name {
+      margin-right: auto;
+    }
+  }
+
+  .content {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      height: 20px;
+      width: 20px;
+      border-radius: 20px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.filter {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 5px;
+  width: 60px;
+  margin-left: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 4px;
+  width: 70px;
+  border-radius: 5px;
+  color: var(--secondary-color);
+  border: none;
+  cursor: pointer;
+}
+.btn-danger {
+  background-color: var(--danger-color);
+  &:hover {
+    background-color: red;
+  }
+}
+.btn-success {
+  background-color: var(--primary-color);
+  &:hover {
+    background-color: var(--highlight-click-item);
+  }
+}
+
+/*===============================
+     Chat Dashboard Section
+=================================*/
+.chat__section-filter {
+  width: 60px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-title, .chat-status {
+  color: var(--primary-color);;
+}
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--primary-color);
+  height: 100px;
+  color: var(--primary-color);
+  background-color: ;
+  .header__left-side{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+    .header-about {
+      display: flex;
+      flex-direction: column;
+      height: 50%;
+      justify-content: space-evenly;
+    }
+    img {
+      margin-left: 50%;
+    }
+  }
+  .header__right-side {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+    margin-right: 20px;
+  }
+}
+
+footer {
+  height: 45px;
+  position: fixed;
+  width: 100%;
+  margin: 30px;
+  bottom: 0;
+  div {
+    position: relative;
+    input {
+      padding-left: 45px;
+      border: none;
+      border-radius: 10px;
+      width: 80%;
+      height: 50px;
+    }
+    input::placeholder {
+      font-size: 15px;
+    }
+    .send-msg, .send-file {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+    .send-msg {
+      right: 22%;
+      opacity: 0.5
+    }
+    .send-file {
+      left: 10px;
+    }
+  }
+}
+i {
+  font-size: 24px;
+}
+
+
+.chat-area {
+  height: calc(100% - 180px);
+  border-radius: 0 0 15px 15px;
+  padding: 15px;
+}
+
+.chat-bubble {
+  width: fit-content;
+  max-width: 60%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 15px;
+  position: relative;
+  clear: both;
+  word-wrap: break-word;
+  font-size: 1rem;
+}
+
+.sender-display-name,
+.client-display-name {
+  font-size: 1.1rem;
+  font-weight: 1000;
+}
+
+.received-message,
+.sent-message {
+  margin: 7px 0 15px 0;
+  border-radius: 10px;
+}
+
+.sent {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  margin-left: auto;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 7px;
+}
+
+.received {
+  color: black;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 7px;
+  /*background-color: rgb(220, 227, 240);*/
+  background-color:  #59a2e2;
+}
+/*===============================
+    Friends Dashboard Section
+=================================*/
+.friends__dashboard-filter {
+  width: 150px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: var(--highlight-click-item);
+  }
+}
+
+.accept__reject-btns {
+  margin-top: 10px;
+}
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER DASHBOARD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/user_dashboard.css?{{ cache_id }}">
+    <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}">
+    <link rel="stylesheet" href="/static/css/chat_freinds_dashboard.css?{{ cache_id }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="module" src="/static/js/dashboard/side_navbar.js?{{ cache_id }}"></script>
+    <script type="module" src="/static/js/dashboard/header_menu.js?{{ cache_id }}"></script>
+    <script type="module" src="/static/js/dashboard/friend_dashboard_section.js?{{ cache_id }}"></script>
+  </head>
+
+  <body>
+    <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+
+    <!-- ===== USER DASHBOARD DESIGN ===== -->
+    <div class="dashboard">
+      <section  class="dashboard__nav">
+        <div class="dashboard__logo">
+		<!--<img src="/static/images/logo.png" alt="logo" class="logo">-->
+        </div>
+
+        <nav class="dashboard__nav-element">
+          <ul class="dashboard__nav-list">
+            <li id="game__nav-item" class="dashboard__nav-item"><i class="fa fa-gamepad"></i>Games</li>
+            <li id="coin__nav-item" class="dashboard__nav-item"><i class="fa fa-coins"></i>Buy Coin</li>
+            <li id="shop__nav-item" class="dashboard__nav-item"><i class="fa fa-shopping-cart"></i>Store</li>
+            <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-tools"></i>Settings</li>
+            <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+          </ul>
+        </nav>
+
+        <div class="dashboard__user">
+          <img src="/static/images/profile_photo_placeholder.jpeg" alt="" class="dashboard__user-avatar">
+          <div class="dashboard__user-info">
+            <h3 class="dashboard__user-name">{{ first_name + ' ' + last_name }}</h3>
+            <h4 class="dashboard__user-email">{{ email }}</h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============= Dashboard Sections ============ -->
+      <section id="dashboard__main" class="dashboard__main">
+
+        <header>
+          <div>
+            <i id="dashboard__main-home" class="fa fa-home fa-2x"></i>
+            <p>&nbsp;&nbsp;Home</p>
+          </div>
+          <div>
+            <i id="dashboard__main-freind" class="fa fa-user-friends fa-2x"></i>
+            <p>Freinds</p>
+          </div>
+          <div>
+            <i class="fa fa-door-open fa-2x"></i>
+            <p>Rooms</p>
+          </div>
+          <div>
+            <i id="dashboard_main-chat" class="fa fa-comment fa-2x"></i>
+            <p>Messages</p>
+          </div>
+          <div>
+            <i class="fa fa-bell fa-2x"></i>
+            <p>notification</p>
+          </div>
+        </header>
+
+        <div class="dashboard__main-container">
+          <input class="dashboard__main-search" placeholder="search.........">
+          <div id="dashboard__main-dynamic" class="dashboard__main-dynamic">
+            <!-- Dashboard section will be loaded here base on click navbar -->
+          </div>
+        </div>
+
+      </section>
+
+      <div id="popup__modal">
+        <!-- This will load the form modal from a file -->
+      </div>
+
+    </div>
+  </body>
+</html>
